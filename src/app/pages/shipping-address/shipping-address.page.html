@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button> 
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">{{ "shipping"|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card id="addresses">
+    <ion-card-header style="font-size: 18px;color: black;background-color: #e0d9d9;padding: 8px;"> {{"shipping details"|translate}} </ion-card-header>
+    <ion-card-content style="padding: 0px !important;">
+      <ion-list>
+        <ion-radio-group (ionChange)="setAddress()"  [(ngModel)]="address">
+          <ion-list-header>
+            <ion-label>
+             {{ "use this address"|translate}}
+            </ion-label>
+          </ion-list-header> 
+          <ion-item *ngFor="let address of shipping_addresses" style="direction:ltr;">
+            <ion-label style="direction: rtl;margin: 0px 5px;">
+               {{address.firstname}} {{address.lastname}},{{address.address_1}}, {{address.address_2}},
+               {{address.city}} ,{{address.zone}},{{address.country}},{{address.postcode}}
+            </ion-label>
+            <ion-radio [value]="address.address_id"></ion-radio>
+          </ion-item>
+          <ion-item style="direction: ltr;">
+            <ion-label style="direction: rtl;margin: 0px 5px;">
+             {{ "use new address"|translate}}
+            </ion-label>
+            <ion-radio value="0"></ion-radio>
+          </ion-item>   
+        </ion-radio-group>
+      </ion-list>
+  
+      <div  style="padding: 0px 10px;" *ngIf="!newaddress">
+        <ion-button color="primary" (click)="setpaymentAddress_exist()" style="margin-top: 30px;height: 46px;" expand="block" shape="round">
+          <p style="font-size: 20px;"> {{"continue"|translate}}</p>       
+        </ion-button>    
+      </div>
+      <div  style="padding: 0px 10px;">
+        <form [formGroup]="myForm" (ngSubmit)="SetPaymentAddress()" *ngIf="newaddress">  
+          
+          <ion-item>
+            <ion-input formControlName="firstname" [placeholder]="fName" type="text"></ion-input>
+          </ion-item>
+         
+          <ion-item>
+            <ion-input formControlName="lastname" [placeholder]="lName" type="text"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label style="color: black;">{{"country"|translate}}</ion-label>
+            <ion-select formControlName="country_id" [(ngModel)]="countryId" (ionChange)="selectCountry()" [placeholder]="country"  style="color: black;" cancelText="{{'cancel'|translate}}" okText="{{'okay'|translate}}">
+              <ion-select-option [value]="country.country_id" *ngFor="let country of countries">
+              {{country.name}}
+              </ion-select-option>  
+            </ion-select>
+          </ion-item>
+  
+          <ion-item>
+            <ion-label style="color: black;">{{"region"|translate}}</ion-label>
+            <ion-select [(ngModel)]="cityId"  formControlName="zone_id" [placeholder]="region"  style="color: black;">
+              <ion-select-option [value]="city.zone_id" *ngFor="let city of cities">
+              {{city.name}}
+              </ion-select-option> 
+            </ion-select>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="city" [placeholder]="city" type="text"></ion-input>
+          </ion-item>
+  
+          <ion-item>
+            <ion-input formControlName="address_1" [placeholder]="fristAddress" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input formControlName="address_2" [placeholder]="secondAddress" type="text"></ion-input>
+          </ion-item>
+          
+          <ion-button color="primary" style="margin-top: 30px;height: 46px;" expand="block" shape="round" type="submit" >  
+                <p style="font-size: 20px;"> {{"continue"|translate}}</p>       
+          </ion-button>     
+      </form> 
+        
+      </div>
+    </ion-card-content> 
+  </ion-card>
+  
+</ion-content>

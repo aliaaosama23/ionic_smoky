@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button> 
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">{{"languages"|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-radio-group  [(ngModel)]="language">
+      <!-- <ion-item *ngFor="let language of languages" style="    direction: ltr;">
+        <ion-label style="direction: rtl;margin: 0px 5px;">
+          <ion-row>
+            <ion-col size="10">
+              {{language.name}}
+            </ion-col>
+            <ion-col size="2" >
+              <img [src]=" ''+ 'language.img'">
+            </ion-col>
+            
+          </ion-row>
+        </ion-label>
+        <ion-radio [value]="language.code"></ion-radio>
+      </ion-item> -->
+
+      <ion-item  style="direction: ltr;">
+        <ion-label style="direction: rtl;margin: 0px 5px;">
+          <ion-row>
+            <ion-col size="10">
+                عربي
+            </ion-col>
+            <ion-col size="2" >
+              <img src="../assets/icon/ar.png">
+            </ion-col>   
+          </ion-row>
+        </ion-label>
+        <ion-radio value="ar"></ion-radio>
+      </ion-item>
+
+      <ion-item  style="direction: ltr;">
+        <ion-label style="direction: rtl;margin: 0px 5px;">
+          <ion-row>
+            <ion-col size="10">
+                English
+            </ion-col>
+            <ion-col size="2" >
+              <img src="../assets/icon/en.png">
+            </ion-col>   
+          </ion-row>
+        </ion-label>
+        <ion-radio value="en"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-row>
+      <ion-col size="1"> </ion-col>
+      <ion-col size="10">
+        <ion-button color="primary" (click)="change_language()" style="margin-top: 30px;height: 46px;" expand="block" shape="round"  >  
+          <p style="font-size: 20px;">{{ "change language"|translate}}</p>       
+        </ion-button>  
+         </ion-col>
+      <ion-col size="1"> </ion-col>
+    </ion-row>
+      
+</ion-content>
+ 

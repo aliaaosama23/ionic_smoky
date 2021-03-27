@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button> 
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">{{"shipping"|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card id="methods">
+    <ion-card-header style="font-size: 18px;color: black;background-color: #e0d9d9;padding: 8px;"> {{"shipping method"|translate}}  </ion-card-header>
+    <ion-card-content style="padding: 0px !important;" *ngIf="methods">
+      <ion-radio-group (ionChange)="setMethod()"  [(ngModel)]="shipping_method">
+        <ion-item *ngFor="let method of shipping_methods" style="direction: ltr;">
+          <ion-label style="direction: rtl;    margin: 0px 5px;">
+             {{method.quote[0].title}}
+          </ion-label>
+          <ion-radio [value]="method.quote[0].code"></ion-radio>
+        </ion-item>   
+      </ion-radio-group>
+   
+
+    </ion-card-content>
+    <ion-card-content style="padding: 10px !important;" *ngIf="!methods">
+        <p style="color: gray;">
+          {{ "warning: shipping method is not available now .please"|translate}}
+           <a href="/contact"> {{"contactUs"|translate}}</a>
+          {{"to help you"|translate}}
+        </p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- <div  style="padding: 0px 10px;" *ngIf="!methods">
+    <ion-button color="primary" (click)="setShipping()"  style="margin-top: 30px;height: 46px;" expand="block" shape="round"  >
+      <p style="font-size: 20px;"> متابعة</p>       
+    </ion-button>    
+  </div> -->
+</ion-content>

@@ -1,0 +1,19 @@
+ion-input {
+    color: black;
+    margin: 4px 10%;
+    border-bottom: 1px solid #707070;
+}
+
+.item .ion-label{
+    --color: black;
+}
+
+ion-item-divider{
+    border-bottom: unset;
+}
+
+
+::slotted(ion-label){
+    margin: 0px;
+}
+

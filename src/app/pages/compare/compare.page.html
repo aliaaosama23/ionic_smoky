@@ -1,0 +1,122 @@
+<ion-header>
+<ion-toolbar >
+  <ion-title style="font-size: 18px;text-transform: capitalize;">  
+    <ion-row>
+      <ion-col size="1"></ion-col>
+      <ion-col size="4">
+        {{"compare"|translate}}
+      </ion-col>
+      <ion-col size="7"></ion-col>
+    </ion-row>
+  </ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="cart()">
+      <ion-icon name="cart" style="font-size: 20px;"></ion-icon>
+      <ion-badge color="light" *ngIf="cartNumber>0">{{cartNumber}}</ion-badge>
+    </ion-button>
+    <ion-button (click)="goBack()">
+      <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<div *ngIf="noProducts==false">
+  <ion-card *ngFor="let product of products">
+    <ion-card-header style="background-color: #E80175;text-align: center;color: white;">
+        {{product.name}}
+    </ion-card-header>
+    <ion-card-content style="padding: 0px !important;">
+       <ion-row >
+         <ion-col size="11" style="text-align: center;">
+            <img style="max-width: 48%;left:42%" [src]="product.image">
+         </ion-col>
+         <ion-col size="1">
+           <ion-icon name="heart-outline"> </ion-icon>
+         </ion-col>
+       </ion-row>
+
+       <ion-grid>
+
+         <ion-row>
+           <ion-col size="4" style="border-top:1px solid #8F8F8F;border-left:1px solid #8F8F8F;color: black;">
+             {{"description"|translate}} 
+            </ion-col>
+           <ion-col size="8" style="border-top:1px solid #8F8F8F;color: black;" [innerHTML]="product.description">
+          </ion-col>
+         </ion-row>
+
+         <ion-row>
+          <ion-col size="4" style="border-top:1px solid #8F8F8F;border-left:1px solid #8F8F8F;color: black;">
+            {{"type"|translate}} 
+           </ion-col>
+          <ion-col size="8" style="border-top:1px solid #8F8F8F;color: black;">
+            {{product.model}}
+         </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4" style="border-top:1px solid #8F8F8F;border-left:1px solid #8F8F8F;color: black;">
+            {{"price"|translate}} 
+           </ion-col>
+          <ion-col size="8" style="border-top:1px solid #8F8F8F;color: black;" >
+            {{product.price_formated}}
+         </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4" style="border-top:1px solid #8F8F8F;border-left:1px solid #8F8F8F;color: black;">
+            {{"availability"|translate}} 
+           </ion-col>
+          <ion-col size="8" style="border-top:1px solid #8F8F8F;color: black;" >
+            {{product.stock_status}}   
+         </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4" style="border-top:1px solid #8F8F8F;border-left:1px solid #8F8F8F;color: black;">
+            {{"Rating"|translate}} 
+           </ion-col>
+          <ion-col size="8" style="border-top:1px solid #8F8F8F;color: black;" >
+            
+            <ion-row>
+              <ion-col size="1">
+               <ion-icon *ngIf="product.reviews .review_total=='0'" style="color:#8F8F8F" name="star-outline"></ion-icon>
+               <ion-icon *ngIf="product.reviews .review_total=='1' || product.reviews .review_total=='2' || product.reviews .review_total=='3' || product.reviews .review_total=='4' || product.reviews .review_total=='5'" style="color:#8F8F8F" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="1">
+               <ion-icon *ngIf="product.reviews .review_total=='0' || product.reviews .review_total=='1'" style="color:#8F8F8F" name="star-outline"></ion-icon>
+               <ion-icon *ngIf=" product.reviews .review_total=='2' || product.reviews .review_total=='3' || product.reviews .review_total=='4' || product.reviews .review_total=='5'" style="color:#8F8F8F" name="star"></ion-icon>
+              </ion-col>
+              <ion-col size="1">
+               <ion-icon *ngIf="product.reviews .review_total=='0' || product.reviews .review_total=='1' || product.reviews .review_total=='2'" style="color:#8F8F8F" name="star-outline"></ion-icon>
+               <ion-icon *ngIf="product.reviews .review_total=='3' || product.reviews .review_total=='4' || product.reviews .review_total=='5'" style="color:#8F8F8F" name="star"></ion-icon> 
+             </ion-col>
+              <ion-col size="1">
+               <ion-icon *ngIf="product.reviews .review_total=='0' || product.reviews .review_total=='1' || product.reviews .review_total=='2' || product.reviews .review_total=='3' || product.reviews .review_total=='4'" style="color:#8F8F8F" name="star-outline"></ion-icon>
+               <ion-icon *ngIf="product.reviews .review_total=='4' || product.reviews .review_total=='5'" style="color:#8F8F8F" name="star"></ion-icon> 
+              </ion-col>
+              <ion-col size="1">
+               <ion-icon *ngIf="product.reviews .review_total=='0' || product.reviews .review_total=='1' || product.reviews .review_total=='2' || product.reviews .review_total=='3'" style="color:#8F8F8F" name="star-outline"></ion-icon>
+               <ion-icon *ngIf="product.reviews .review_total=='5'" style="color:#8F8F8F" name="star"></ion-icon> 
+              </ion-col>
+              <ion-col size="7">
+              </ion-col>
+            </ion-row>
+         
+         </ion-col>
+        </ion-row>
+       </ion-grid>
+         
+    </ion-card-content>
+  </ion-card>
+</div>
+
+<div *ngIf="noProducts==true" style="margin-top:40%;text-align:center">
+  <h1 style="color:black"> {{"no compared products"|translate}} </h1>
+</div>
+  
+
+</ion-content>

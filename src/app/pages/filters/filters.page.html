@@ -1,0 +1,60 @@
+
+<ion-content>
+    <ion-list >
+      <ion-radio-group (ionChange)="setFilter()" [(ngModel)]="filterBy">
+        <ion-list-header>
+          <ion-label class="labelColor">
+           {{"filterBy"|translate}} :
+          </ion-label>
+        </ion-list-header> 
+        <ion-item>
+          <ion-label class="labelColor">
+            {{"name a-z"|translate}}
+          </ion-label>
+          <ion-radio value="name_ASC"></ion-radio>
+        </ion-item> 
+        <ion-item>
+          <ion-label class="labelColor">
+           {{"name z-a"|translate}}
+          </ion-label>
+          <ion-radio value="name_DESC"></ion-radio>
+        </ion-item> 
+        <ion-item>
+          <ion-label class="labelColor">
+           {{"price desc"|translate}}
+          </ion-label>
+          <ion-radio value="price_ASC"></ion-radio>
+        </ion-item>   
+        <ion-item>
+          <ion-label class="labelColor">
+            {{"price asc"|translate}}
+          </ion-label>
+          <ion-radio value="price_DESC"></ion-radio>
+        </ion-item>  
+        <ion-item>
+          <ion-label class="labelColor">
+            {{"rating asc"|translate}}
+          </ion-label>
+          <ion-radio value="rating_DESC"></ion-radio>
+        </ion-item>   
+        <ion-item>
+          <ion-label class="labelColor">
+           {{"rating desc"|translate}}
+          </ion-label>
+          <ion-radio value="rating_ASC"></ion-radio>
+        </ion-item> 
+        <ion-item>
+          <ion-label class="labelColor">
+           {{"type a-z"|translate}}
+          </ion-label>
+          <ion-radio value="model_ASC"></ion-radio>
+        </ion-item>   
+        <ion-item>
+          <ion-label class="labelColor">
+            {{ "type z-a"|translate}}
+          </ion-label>
+          <ion-radio value="model_DESC"></ion-radio>
+        </ion-item>   
+      </ion-radio-group>
+    </ion-list>
+</ion-content>

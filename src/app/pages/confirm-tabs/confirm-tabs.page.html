@@ -1,0 +1,105 @@
+<!-- <ion-content>
+  <div [ngSwitch]="type">
+    <div *ngSwitchCase="'main'">
+      
+    </div>
+    <div *ngSwitchCase="'receipts'">
+      receipts
+     </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-segment [(ngModel)]="type"  >
+    <ion-segment-button value="main" color="primary">
+      <ion-icon name="home" style="    font-size: 20px;"></ion-icon>
+      <ion-label>الرئيسية</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="receipts">
+      <ion-icon name="receipt"  style="    font-size: 20px;"></ion-icon>
+      <ion-label>الفواتير</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="payments">
+      <ion-icon name="card"  style="    font-size: 20px;"></ion-icon>
+      <ion-label>الدفع</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="confirm">
+      <ion-icon name="checkmark-done"  style="    font-size: 20px;"></ion-icon>
+      <ion-label>تأكيد الطلب</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer> -->
+<!-- <ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="main">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>الرئيسية</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="cart">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>سلة التسوق</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="favourite">
+      <ion-icon name="pricetags"></ion-icon>
+      <ion-label>المفضلة</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      <ion-label>البحث</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="more">
+      <ion-icon name="ellipsis-vertical"></ion-icon>
+      <ion-label>المزيد</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs> -->
+<!-- <ion-content></ion-content>
+<ion-footer>
+  <ion-row>
+    <ion-col size="3" (click)="goHome()">
+      <ion-icon name="home" class="myIcon" ></ion-icon>
+      <ion-label class="myLabel" style=" margin-right: 23%;">الرئيسية</ion-label>
+    </ion-col>
+    <ion-col size="3">
+      <ion-icon name="receipt"  class="myIcon" ></ion-icon>
+      <ion-label class="myLabel" style=" margin-right: 23%;" >الفواتير</ion-label>
+    </ion-col>
+    <ion-col size="3">
+      <ion-icon name="card"  class="myIcon" ></ion-icon>
+      <ion-label class="myLabel"  style=" margin-right: 23%;">الدفع</ion-label>
+    </ion-col>
+    <ion-col size="3">
+      <ion-icon name="checkmark-done"  class="myIcon" ></ion-icon>
+      <ion-label class="myLabel" style=" margin-right: 10%;" >تأكيد الطلب</ion-label>
+    </ion-col>
+  </ion-row>
+</ion-footer> -->
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom" style="border-top-color: #d4cece !important;background: white;">
+    <ion-tab-button tab="main">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{"home"|translate}} </ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="confirm1">
+      <ion-icon name="newspaper"></ion-icon>
+      <ion-label>{{"Invoices"|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="confirm2">
+      <ion-icon name="pricetags"></ion-icon>
+      <ion-label>{{"payment"|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="confirm3">
+      <ion-icon name="checkmark-done"></ion-icon>
+      <ion-label>{{"confirm order"|translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

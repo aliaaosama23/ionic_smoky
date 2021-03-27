@@ -1,0 +1,80 @@
+
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="text-align: center;">{{"login page"|translate}} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="myForm" (ngSubmit)="login()">  
+      <ion-item>
+        <ion-input [value]="emailValue" formControlName="email" [placeholder]="email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [value]="passwordValue" formControlName="password" [placeholder]="password" type="password"></ion-input>
+       </ion-item>
+      
+      <ion-button color="primary" style="margin-top: 30px;height: 46px;" expand="block" shape="round" type="submit" >  
+            <p style="font-size: 20px;"> {{"login"|translate}}</p>       
+      </ion-button>     
+  </form> 
+
+  <div id="socailLogin" style="margin-top: 30px;" *ngIf="dir==true">
+    <ion-row>
+      <ion-col size="6" style="padding: 0px !important;">
+        <ion-button class="btn_socail1" color="light"  expand="block" (click)="loginGoogle()" >  
+          <p style="display: inline-block;font-size: 18px;margin-left: 5%;"> {{"sign in"|translate}} </p>       
+          <ion-icon name="logo-google"></ion-icon>            
+        </ion-button> 
+      </ion-col>
+      <ion-col size="6" style="padding: 0px !important;">
+        <ion-button class="btn_socail2" color="dark"  expand="block" (click)="loginFacebook()" >  
+               <p style="display: inline-block;font-size: 18px;margin-left: 5%;"> {{"sign in"|translate}}</p>
+               <ion-icon name="logo-facebook"></ion-icon> 
+        </ion-button> 
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div id="socailLogin" style="margin-top: 30px;" *ngIf="dir==false">
+    <ion-row>
+      <ion-col size="6" style="padding: 0px !important;">
+        <ion-button class="btn_socail11" color="light"  expand="block" (click)="loginGoogle()" >  
+          <p style="display: inline-block;font-size: 18px;margin-left: 5%;"> {{"sign in"|translate}} </p>       
+          <ion-icon name="logo-google"></ion-icon>            
+        </ion-button> 
+      </ion-col>
+      <ion-col size="6" style="padding: 0px !important;">
+        <ion-button class="btn_socail21" color="dark"  expand="block" (click)="loginFacebook()" >  
+               <p style="display: inline-block;font-size: 18px;margin-left: 5%;"> {{"sign in"|translate}}</p>
+               <ion-icon name="logo-facebook"></ion-icon> 
+        </ion-button> 
+      </ion-col>
+    </ion-row>
+  </div>
+
+  
+
+  <div id="forgetPassword" style="margin-top:30px;text-align: center;" (click)="forgetpassword()">
+    <p style="font-size: 18px;color: black;"> {{"forget password ?"|translate}} </p>
+  </div>
+<!-- 
+  <ion-button (click)="loginwithFinger()" routerDirection="forward" color="primary" style="margin-top: 30px;height: 46px;" expand="block" shape="round" >  
+    <p style="font-size: 20px;"> login with finger</p>       
+  </ion-button> -->
+
+  <ion-button [routerLink]="['/sign-up']" routerDirection="forward" color="primary" style="margin-top: 30px;height: 46px;" expand="block" shape="round" >  
+    <p style="font-size: 20px;"> {{"sign up"|translate}}</p>       
+  </ion-button>  
+  
+  
+ <div style="text-align: center;" *ngIf="loginWithFingerprint==true"> 
+  <ion-icon name="chevron-forward" style="font-size: 20px;" (click)="loginFinger()"></ion-icon>
+ </div>
+
+</ion-content>

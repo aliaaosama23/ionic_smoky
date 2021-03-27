@@ -1,0 +1,124 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="search" style="font-size: 26px; margin: 0px 5px; "></ion-icon>
+    </ion-buttons>
+    <ion-title>
+     {{ "search"|translate}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="11">
+        <ion-searchbar [ngModel]="mySearchText"  animated [placeholder]="search_word" autocomplete="on" (ionInput)="onInput($event)"></ion-searchbar>
+      </ion-col>
+      <ion-col size="1" style="margin-top: 4%;">
+        <ion-icon (click)="searchwithsound()" name="mic-circle" style="color: #E80175;font-size: 40px;margin: -6px -15px;"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row style="padding: 0px 10px;">
+    <ion-col size="4" style="padding: 0px;">
+      <ion-button (click)="search()" color="primary" style="text-transform: inherit;" expand="block">{{"search"|translate}} </ion-button>
+    </ion-col>
+
+    <ion-col size="4" style="padding: 0px;">
+      <ion-button style="position: relative;" color="primary" expand="block" (click)="presentPopover($event)" >
+        <ion-icon  name="caret-up" style="color: #a0a0a0;font-size: 23px;position: absolute;top: 2px;"></ion-icon>
+        <ion-icon  name="caret-down" style="color: #a0a0a0;font-size: 23px;position: absolute; top: 13px;"></ion-icon>
+      </ion-button>
+    </ion-col>
+
+    <ion-col size="4" style="padding: 0px;">
+      <ion-button color="primary" expand="block" (click)="toggleStyle()">
+        <ion-icon  name="list" *ngIf="!isGrid"></ion-icon>
+        <ion-icon  name="grid-outline" *ngIf="isGrid"></ion-icon>
+      </ion-button>
+    </ion-col>   
+  </ion-row>
+  <!-- *ngIf="nodata==false" -->
+  <div >
+ 
+    <ion-grid no-padding *ngIf="isGrid">
+      <ion-row>
+        <ion-col  size="6" size-xs="6" size-sm="6" size-md="3"   *ngFor="let p of resultproducts" >
+          <ion-card>
+            <ion-card-content style="padding: 0px !important;">
+               <div style="position: relative;">     
+                  <img onError="src = '../../assets/icon.png'" [src]="p.image" (click)="productDetails(p.product_id,p.name)">
+                  <div style="position: absolute;top: 8px;right: 6px;" (click)="Add_product_to_wishlist(p.product_id)">
+                    <ion-icon name="heart-outline" style="color: gray;font-size: 20px;"></ion-icon>
+                  </div>
+                  <div style="position: absolute;top: 8px;left: 6px;">
+                    <ion-icon name="swap-horizontal-outline" style="color: gray;font-size: 20px;"></ion-icon>
+                  </div>         
+               </div>
+              <ion-row>
+                <ion-col size="6">
+                  <div>
+                    <h4 style="color: black;overflow: hidden;white-space: nowrap;font-size: 15px;"> {{p.name}}</h4>
+                    <p style="color: #E80175;overflow: hidden;white-space: nowrap;font-size: 13px;margin: 0px;"> {{p.price_formated}}</p>
+                  </div>
+                </ion-col>
+                <ion-col size="2"></ion-col>
+                <ion-col size="4" style="margin-top: 9%;text-align: center;" (click)="addItemToCrt(p.product_id)">
+                  <div>
+                    <ion-icon name="basket" style="color: #E80175;font-size: 20px;"></ion-icon>
+                  </div>
+                </ion-col>
+              </ion-row> 
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div *ngIf="!isGrid" >
+      <ion-card  *ngFor="let p of resultproducts" style="position: relative;">
+        <ion-card-content style="padding: 0px !important;">
+          <ion-row>
+            <ion-col size="4">
+              <img onError="src = '../../assets/icon.png'" [src]="p.image" (click)="productDetails(p.product_id,p.name)">
+            </ion-col>
+            <ion-col size="1"></ion-col>
+            <ion-col size="6">
+                <h4 style="color: black;overflow: hidden;white-space: nowrap;font-size: 15px;"> {{p.name}}</h4>
+                <p style="margin-top: 12px;color: #E80175;overflow: hidden;white-space: nowrap;font-size: 13px;"> {{p.price_formated}}</p>
+                <div style="position: absolute;bottom: 8px;right: 6px;" (click)="Add_product_to_wishlist(p.product_id)">
+                  <ion-icon name="heart-outline" style="color: gray;font-size: 20px;"></ion-icon>
+                </div>
+                <div style="position: absolute;bottom: 8px;right: 42px;">
+                  <ion-icon name="swap-horizontal-outline" style="color: gray;font-size: 20px;"></ion-icon>
+                </div> 
+            </ion-col>
+            <ion-col size="1">
+              <div (click)="addItemToCrt(p.product_id)" style="position: absolute;left: 10px;top:10px">
+                <ion-icon name="basket" style="color: #E80175;font-size: 20px;"></ion-icon>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+      <div *ngIf="nodata==true" style="margin-top:40%;text-align:center">
+        <h1 style="color:black">  {{"no products for search word"|translate}}  </h1>
+    </div>
+    </div>
+  </div>
+  
+  <!-- <div  *ngIf="nodata==true" style="margin-top: 30%;text-align: center;font-size: 20px;color: black;">
+     {{"no products for search word"|translate}}
+  </div> -->
+
+  <ion-infinite-scroll threshold="5%" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent"></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+</ion-content>

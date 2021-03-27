@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "88471063528",
+    "firebase_url": "https://mysmoky-26a7f.firebaseio.com",
+    "project_id": "mysmoky-26a7f",
+    "storage_bucket": "mysmoky-26a7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88471063528:android:e23e5120a6ee899442b25d",
+        "android_client_info": {
+          "package_name": "com.efadh.smoky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88471063528-gkrf1qqtr64vqt3h09op7ire52bg27ts.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.efadh.smoky",
+            "certificate_hash": "d7a917736bec11b06224409350cc65d5c5d551b3"
+          }
+        },
+        {
+          "client_id": "88471063528-fd736286tv4ss84jr8ohfhv4gp58u29r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj4Hg-fS4J76LUzVLjJzf8102hRA0Ee2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88471063528-fd736286tv4ss84jr8ohfhv4gp58u29r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

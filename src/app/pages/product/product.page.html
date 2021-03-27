@@ -1,0 +1,232 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button> 
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">{{productname}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="share()">
+        <ion-icon name="share-social" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content style="position: relative;">
+ 
+  <ion-slides *ngIf="images.length!=0" loop="true" speed="300"  pager="true" dir="rtl" autoplay="3000" >
+    <ion-slide  *ngFor="let image of productDetails.images">
+      <img (click)="productphotoViewer(image)" style="height: 200px;object-fit: cover;object-position: center;" [src]="image">
+    </ion-slide>
+  </ion-slides>
+  <ion-slides *ngIf="images.length==0" loop="true" speed="300"  pager="true" dir="rtl" autoplay="3000" >
+    <ion-slide>
+      <img (click)="productphotoViewerImg()" style="height: 200px;object-fit: cover;object-position: center;" src={{productDetails.image}}>
+    </ion-slide>
+  </ion-slides>
+
+  <div id="name_price" class="ion-padding">
+     <h2 style="font-size: 18px;">{{productDetails.name}}</h2>
+      <ion-row *ngIf="productDetails.special!=0">
+        <ion-col size="3"> <span style="color: #8F8F8F;font-size: 14px;"> {{"price"|translate}} </span></ion-col>
+        <ion-col size="3" >
+          <del style="color:#8F8F8F;font-size: 14px;"> {{productDetails.price_formated}}</del> 
+        </ion-col>
+        <ion-col size="3"></ion-col>
+        <ion-col size="3" style="text-align: left;">
+           <span style="color:#E80175;font-size: 14px;"> {{productDetails.special_excluding_tax_formated}}</span> 
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="productDetails.special==0">
+        <ion-col size="3"> <span style="color: #8F8F8F;font-size: 14px;"> {{"price"|translate}} </span></ion-col>
+        <ion-col size="6"></ion-col>
+        <ion-col size="3" style="text-align: left;">
+           <span style="color:#E80175;font-size: 14px;"> {{productDetails.special_formated}}</span> 
+        </ion-col>
+      </ion-row>
+  </div>
+
+  <div style="height: 2px;border-bottom: 1px solid #BFBFBF;width: 100%;">
+  </div>
+
+  <div id="category_review" class="ion-padding">
+    <h2 style="font-size: 18px;color: #8F8F8F">{{"type"|translate}} : {{productDetails.model}}</h2>
+    <h2 style="font-size: 18px;color: #8F8F8F">{{"Available quantity"|translate}} : {{productDetails.quantity}}</h2>
+     <ion-row>
+       <ion-col size="1" style="padding: 0px;">
+        <ion-icon *ngIf="rating=='0'" style="color:#F3CB00" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="rating=='1' || rating=='2' || rating=='3' || rating=='4' || rating=='5'" style="color:#F3CB00" name="star"></ion-icon>
+       </ion-col>
+       <ion-col size="1" style="padding: 0px;">
+        <ion-icon *ngIf="rating=='0' || rating=='1'" style="color:#F3CB00" name="star-outline"></ion-icon>
+        <ion-icon *ngIf=" rating=='2' || rating=='3' || rating=='4' || rating=='5'" style="color:#F3CB00" name="star"></ion-icon>
+       </ion-col> 
+       <ion-col size="1" style="padding: 0px;">
+        <ion-icon *ngIf="rating=='0' || rating=='1' || rating=='2'" style="color:#F3CB00" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="rating=='3' || rating=='4' || rating=='5'" style="color:#F3CB00" name="star"></ion-icon> 
+      </ion-col>
+       <ion-col size="1" style="padding: 0px;">
+        <ion-icon *ngIf="rating=='0' || rating=='1' || rating=='2' || rating=='3' || rating=='4'" style="color:#F3CB00" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="rating=='4' || rating=='5'" style="color:#F3CB00" name="star"></ion-icon> 
+       </ion-col>
+       <ion-col size="1" style="padding: 0px;">
+        <ion-icon *ngIf="rating=='0' || rating=='1' || rating=='2' || rating=='3'" style="color:#F3CB00" name="star-outline"></ion-icon>
+        <ion-icon *ngIf="rating=='5'" style="color:#F3CB00" name="star"></ion-icon> 
+       </ion-col>
+       <ion-col size="7" >
+       </ion-col>
+     </ion-row>
+  </div>
+  <div style="height: 2px;border-bottom: 1px solid #BFBFBF;width: 100%;margin-bottom: 8px;">
+  </div>
+
+  <div id="description" class="ion-padding">
+    <h2 style="color: #8F8F8F;    font-size: 18px;"> {{ "Product Description"|translate}}</h2>
+    <h3 style="color: #8F8F8F;    font-size: 18px;" [innerHTML]="description">
+    </h3>
+  </div>
+
+
+  <div style="height: 2px;border-bottom: 1px solid #BFBFBF;width: 100%;"  *ngIf="RelatedProducts.length!=0">
+  </div>
+
+  <div id="products_related" class="ion-padding" *ngIf="RelatedProducts.length!=0">
+    <div>   <h2 style="font-size: 18px;color: #8F8F8F">  {{ "You may also like"|translate}}  </h2>  </div>
+     
+    <ion-row>
+      <ion-col size="6" *ngFor="let p of RelatedProducts">
+          <ion-card>
+            <img    onError="src = '../../assets/icon.png'"  [src]="p.thumb" (click)="RelatedproductDetails(p.product_id,p.name)">
+            <h4  style="font-size: 12px;text-align:center;white-space: normal;"> {{p.name}} </h4>
+            <h4  style="font-size: 12px;text-align:center;white-space: normal;"> {{p.price_excluding_tax_formated}} </h4>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+     
+  </div>
+
+  <div id="products_reviews" class="ion-padding" style="margin-bottom: 40px;border-top: 1px solid #8F8F8F;border-bottom: 1px solid #8F8F8F;padding: 0px;margin: 16px;">
+     
+    <ion-row (click)="expandReviews()">
+       <ion-col size="6">
+        <h2 style="font-size: 18px;color: #8F8F8F;white-space: normal;" > 
+           {{ "Reviews"|translate}}  ({{productReviews}} )
+        </h2>
+       </ion-col>
+       <ion-col size="5"></ion-col>
+       <ion-col size="1" style="margin-top: 3%;" *ngIf="!ReviewStatus">
+        <ion-icon name="chevron-down-outline" style="color: #8F8F8F;"></ion-icon>
+       </ion-col>
+       <ion-col size="1" style="margin-top: 3%;" *ngIf="ReviewStatus">
+        <ion-icon name="chevron-up-outline" style="color: #8F8F8F;"></ion-icon>
+       </ion-col>
+    </ion-row>
+     
+    <div *ngIf="ReviewStatus==true" style="text-align: center;">
+ 
+      <h2 *ngIf="productDetails.reviews?.review_total=='0'" style="color: black;font-size: 16px;">
+      {{"no reviews for that product"|translate}}
+      </h2>
+
+      <div *ngIf="productDetails.reviews?.reviews">
+        <ion-card *ngFor="let review of reviews">
+          <ion-card-content>
+           <p>{{review.author}}</p>
+           <p style="color:#8F8F8F"> {{review.text}}</p>
+           <ion-row>
+             <ion-col size="6">
+               {{review.date_added}}
+             </ion-col>
+              <ion-col size="1" style="padding: 0px;">
+                <ion-icon *ngIf="review.rating=='0'" style="color:#F3CB00" name="star-outline"></ion-icon>
+                <ion-icon *ngIf="review.rating=='1' || review.rating=='2' || review.rating=='3' || review.rating=='4' || review.rating=='5'" style="color:#F3CB00" name="star"></ion-icon>
+               </ion-col>
+               <ion-col size="1" style="padding: 0px;">
+                <ion-icon *ngIf="review.rating=='0' || review.rating=='1'" style="color:#F3CB00" name="star-outline"></ion-icon>
+                <ion-icon *ngIf=" review.rating=='2' || review.rating=='3' || review.rating=='4' || review.rating=='5'" style="color:#F3CB00" name="star"></ion-icon>
+               </ion-col> 
+               <ion-col size="1" style="padding: 0px;">
+                <ion-icon *ngIf="review.rating=='0' || review.rating=='1' || review.rating=='2'" style="color:#F3CB00" name="star-outline"></ion-icon>
+                <ion-icon *ngIf="review.rating=='3' || review.rating=='4' || review.rating=='5'" style="color:#F3CB00" name="star"></ion-icon> 
+              </ion-col>
+               <ion-col size="1" style="padding: 0px;">
+                <ion-icon *ngIf="review.rating=='0' || review.rating=='1' || review.rating=='2' || review.rating=='3' || review.rating=='4'" style="color:#F3CB00" name="star-outline"></ion-icon>
+                <ion-icon *ngIf="review.rating=='4' || review.rating=='5'" style="color:#F3CB00" name="star"></ion-icon> 
+               </ion-col>
+               <ion-col size="1" style="padding: 0px;">
+                <ion-icon *ngIf="review.rating=='0' || review.rating=='1' || review.rating=='2' || review.rating=='3'" style="color:#F3CB00" name="star-outline"></ion-icon>
+                <ion-icon *ngIf="review.rating=='5'" style="color:#F3CB00" name="star"></ion-icon> 
+               </ion-col>
+             <ion-col size="1"></ion-col>
+           </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      
+
+      <ion-button color="primary" style="margin: 1% 20%;height: 35px;" expand="block" shape="round" (click)="productReview()" >  
+        <p style="font-size: 17px;"> {{"add rate to product"|translate}}</p>       
+      </ion-button>
+    </div>
+  </div>
+
+  <div style="height: 40px;">
+
+  </div>
+
+
+</ion-content>
+
+<ion-footer class="ion-no-border" >
+  <span *ngIf="dir==true" style="bottom: 0px;background-color: #E80175;text-align: center;width: 47%;color: white;position: absolute;font-size: 16px;height: 24px;line-height: 24px; "  (click)="addToCart()">
+   {{"add to cart"|translate}}
+  </span>
+  <span *ngIf="dir==true" style="width: 10%;font-size: 15px;position: absolute;right: 48%;bottom: -3px;" (click)="increaseQuantity()">
+    <ion-icon name="add-circle" style="color:#8B177A;font-size: 24px;margin-bottom: -2%;"></ion-icon>
+  </span>
+  <span *ngIf="dir==true" style="width: 15%;position: absolute;bottom: 2px;right: 57%;">
+     <span style="color: black;"> {{quantity}}</span> 
+  </span>
+  <span *ngIf="dir==true" style="width: 10%;position: absolute;right: 62%;bottom: -4px;" (click)="decreaseQuantity()">
+     <ion-icon name="remove-circle" style="color:#E80175;font-size: 24px;margin-bottom: -2%;"></ion-icon> 
+  </span>
+
+
+  <span *ngIf="dir==false" style="bottom: 0px;background-color: #E80175;text-align: center;width: 47%;color: white;position: absolute;font-size: 16px;height: 24px;line-height: 24px; "  (click)="addToCart()">
+    {{"add to cart"|translate}}
+   </span>
+   <span *ngIf="dir==false" style="width: 10%;font-size: 15px;position: absolute;left: 48%;bottom: -3px;" (click)="increaseQuantity()">
+     <ion-icon name="add-circle" style="color:#8B177A;font-size: 24px;margin-bottom: -2%;"></ion-icon>
+   </span>
+   <span *ngIf="dir==false" style="width: 15%;position: absolute;bottom: 2px;left: 57%;">
+      <span style="color: black;"> {{quantity}}</span> 
+   </span>
+   <span *ngIf="dir==false" style="width: 10%;position: absolute;left: 62%;bottom: -4px;" (click)="decreaseQuantity()">
+      <ion-icon name="remove-circle" style="color:#E80175;font-size: 24px;margin-bottom: -2%;"></ion-icon> 
+   </span>
+
+  <span *ngIf="dir==true" style="    bottom: -5px;width:10%;position:absolute;left:10% "> 
+    <ion-icon    *ngIf="isAddToWishList==0" name="heart-outline" style="color:#777;font-size: 24px;" (click)=" Add_product_to_wishlist()"></ion-icon>
+    <ion-spinner *ngIf="isAddToWishList==1"  [paused]='ispaused' name="lines-small"  color="primary" ></ion-spinner>
+    <ion-icon    *ngIf="isAddToWishList==2"  name="heart" style="color:#E80175;font-size: 24px;" (click)=" Add_product_to_wishlist()"></ion-icon> 
+  </span>
+
+  <span *ngIf="dir==false" style="    bottom: -5px;width:10%;position:absolute;right:10% ">
+    <ion-icon    *ngIf="isAddToWishList==0" name="heart-outline" style="color:#777;font-size: 24px;" (click)=" Add_product_to_wishlist()"></ion-icon>
+    <ion-spinner *ngIf="isAddToWishList==1"  [paused]='ispaused' name="lines-small"  color="primary" ></ion-spinner>
+    <ion-icon    *ngIf="isAddToWishList==2"  name="heart" style="color:#E80175;font-size: 24px;" (click)=" Add_product_to_wishlist()"></ion-icon>
+  </span>
+
+  <span *ngIf="dir==true" style="    bottom: -5px;width:10%;position:absolute;left:0">
+    <ion-icon name="swap-horizontal-outline" style="color:#777;font-size: 24px;" (click)="Compare()"></ion-icon>
+  </span>
+
+  <span *ngIf="dir==false" style="    bottom: -5px;width:10%;position:absolute;right:0">
+    <ion-icon name="swap-horizontal-outline" style="color:#777;font-size: 24px;" (click)="Compare()"></ion-icon>
+  </span>
+</ion-footer>
+
+

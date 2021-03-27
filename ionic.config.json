@@ -1,0 +1,8 @@
+{
+  "name": "smokyFinal",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

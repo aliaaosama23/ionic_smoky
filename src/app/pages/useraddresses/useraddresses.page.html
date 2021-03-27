@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="font-size: 18px;text-transform: capitalize;text-align: center;">  
+          {{"Addresses List"|translate}}   
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cart()">
+        <ion-icon name="cart" style="font-size: 20px;"></ion-icon>
+        <ion-badge color="light" *ngIf="cartNumber>0">{{cartNumber}}</ion-badge>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <div *ngFor="let address of Addresses">
+ 
+    <h6> {{address.firstname}} {{address.lastname}} </h6>
+    <h6> {{address.address_1}}</h6>
+    <h6> {{address.address_2}} </h6>
+    <h6> {{address.city}}</h6>
+    <h6> {{address.country}} </h6>
+    <h6>{{address.zone}} </h6>
+    
+    <ion-row>
+      <ion-col size="6" style="padding:0px"> 
+        <ion-button style="color:white;" expand="full"(click)="edit(address.address_id)" > 
+          
+           <ion-icon name="pencil"></ion-icon>  
+           {{"edit"|translate}}
+         </ion-button>
+      </ion-col>
+      <ion-col size="6" style="padding:0px"> 
+        <ion-button style="color:white;" expand="full" (click)="delete(address.address_id)">       
+         
+          <ion-icon name="trash"></ion-icon>
+          {{"delete"|translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </div>
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" (click)="addNewAddress()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
+</ion-content>

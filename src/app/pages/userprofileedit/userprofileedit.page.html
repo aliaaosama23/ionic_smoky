@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="font-size: 18px;text-transform: capitalize;">  
+      <ion-row>
+        <ion-col size="1"></ion-col>
+        <ion-col size="4">
+          {{"My Account Info"|translate}}
+        </ion-col>
+        <ion-col size="7"></ion-col>
+      </ion-row>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cart()">
+        <ion-icon name="cart" style="font-size: 20px;"></ion-icon>
+        <ion-badge color="light" *ngIf="cartNumber>0">{{cartNumber}}</ion-badge>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <form   [formGroup]="myForm" (ngSubmit)="updateProfile()">
+  
+    <ion-item lines="none">    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="person" style="font-size: 22px;color:#8B177A;margin-left: 5% "></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;line-height: 26px;">{{"fName"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="firstname" [(ngModel)]="f_name"  type="text" ></ion-input>
+    </ion-item>
+
+    <ion-item lines="none">    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="person" style="font-size: 22px;color:#8B177A;margin-left: 5% "></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;line-height: 26px;">{{"lName"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="lastname" [(ngModel)]="l_name" type="text" ></ion-input>
+    </ion-item>
+ 
+    <ion-item lines="none">    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="mail" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;line-height: 26px;">{{"email"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="email" type="email" [(ngModel)]="_email" ></ion-input>
+    </ion-item>
+  
+    <ion-item lines="none">     
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="call" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;line-height: 26px;">{{"mobile"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="telephone" type="number" [(ngModel)]="_telephone"></ion-input>
+    </ion-item>
+  
+    <ion-item lines="none">    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="print" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;line-height: 26px;">{{"fax"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="fax" type="text" [(ngModel)]="_fax"></ion-input>
+    </ion-item>
+  
+  <ion-button color="primary" style="margin: 10px 15%;margin-top: 10px;height: 40px;" expand="block" shape="round" type="submit" >  
+    <p style="font-size: 20px;">{{ "save changes"|translate}}</p>       
+  </ion-button> 
+</form> 
+
+</ion-content>

@@ -1,0 +1,122 @@
+--------------- opencart api:  https://api.opencart-api.com/demo/shopping-cart/#/
+--------------- smoky web:http://www.smo-ky.com/index.php?route=common/home
+---------------------- ionic tutorials ------------------
+
+ --- fingerprint
+   -https://www.youtube.com/watch?v=tQDChMJ6er8  pual
+   -https://www.youtube.com/watch?v=SBz2MLaJ3Ls  simon
+   -https://github.com/NiklasMerz/cordova-plugin-fingerprint-aio
+
+
+ --- facebook
+   -https://www.joshmorony.com/native-web-facebook-authentication-with-firebase-in-ionic/
+   -https://www.djamware.com/post/5d949fa24ca99c5ee51238ef/ionic-4-tutorial-facebook-login-example
+ --- google plus
+   -https://github.com/EddyVerbruggen/cordova-plugin-googleplus
+   -https://ionicframework.com/docs/native/google-plus
+ --- network
+   -https://www.youtube.com/watch?v=CFoG0xkgVlE&t=49s
+   -https://devdactic.com/ionic-4-offline-mode/
+
+--------- events:https://www.youtube.com/watch?v=51QVnRDucKw&t=5s
+--- deploy 
+  -https://www.joshmorony.com/deploying-capacitor-applications-to-android-development-distribution/
+----------------------------------------------------
+ionic integrations enable
+
+
+ionic integrations enable <name> [options]
+---------------------------------------------------
+plugins:
+-storage
+-spinner
+-------------------
+  var firebaseConfig = {
+    apiKey: "AIzaSyApN61pyuAUqt9Z4numhJu11Z8SBSR-R7k",
+    authDomain: "smoky-276022.firebaseapp.com",
+    databaseURL: "https://smoky-276022.firebaseio.com",
+    projectId: "smoky-276022",
+    storageBucket: "smoky-276022.appspot.com",
+    messagingSenderId: "1031275071304",
+    appId: "1:1031275071304:web:ebeb64ec58d85bf430557d",
+    measurementId: "G-6QZKV80B5G"
+  };
+
+
+keytool -list -v \-alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
+
+
+ionic cordova plugin add cordova-plugin-googleplus --variable REVERSED_CLIENT_ID=1031275071304-jskm4l151sendf0m8u9st52ua7ts5u8t.apps.googleusercontent.com
+
+
+1031275071304-1m3r084d5j74l529dl2e25hha7nb0he9.apps.googleusercontent.com
+
+
+
+
+keytool -genkey -v -keystore smokyapp.keystore -alias smoky -keyalg RSA -keysize 2048 -validity 10000
+aliaa
+osama 
+efada
+efada
+mansoura
+egypt
+eg
+----------------------------
+123456
+
+---------------------------------------------------------------------------------------------------------
+
+
+// Install core library
+npm install --save @ngx-translate/core
+// Install http loader
+npm install @ngx-translate/http-loader --save
+
+
+
+{
+   "sort":"quantity",
+    "order":"asc",
+    "filters":[
+       {
+         "field":"price",
+         "operand":">=",
+         “value":"10”
+      },
+      {
+         "field":"manufacturer",
+           "operand":"in",
+           "logical_operand":"and",
+          "value":[
+             1,
+                2,
+                3
+         ]
+     },
+     {
+        "field":"name",
+        "operand":"like",
+        “value":"apple”
+    }
+ ]
+}
+
+
+{
+  "fields": [
+    {
+      "field": "string",
+      "value": "string",
+      "operand": "string",
+      "logical_operand": "string"
+    }
+  ],
+  "debug": "string",
+  "order": "string",
+  "sort": "string"
+}
+
+--------------------------------------------------------------
+window.loaction.reload()
+at language change : document.

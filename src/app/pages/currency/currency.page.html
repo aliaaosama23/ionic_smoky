@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false" ></ion-menu-button> 
+    </ion-buttons>
+    <ion-title style="font-size: 18px;">{{"currencies"|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-radio-group  [(ngModel)]="currency">
+      <ion-item *ngFor="let currency of currencies" style="direction: ltr;">
+        <ion-label style="direction: rtl;margin: 0px 5px;">
+          <ion-row>
+            <ion-col size="10">
+              {{currency.title}}
+            </ion-col>
+            <ion-col size="2" *ngIf="currency.symbol_right!=''">
+              {{currency.symbol_right}}
+            </ion-col>
+            <ion-col size="2" *ngIf="currency.symbol_left!=''">
+              {{currency.symbol_left}}
+            </ion-col>
+          </ion-row>
+        </ion-label>
+        <ion-radio [value]="currency.code"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+
+    <ion-row>
+      <ion-col size="1"> </ion-col>
+      <ion-col size="10">
+        <ion-button color="primary" (click)="change_currency()" style="margin-top: 30px;height: 46px;" expand="block" shape="round"  >  
+          <p style="font-size: 20px;"> {{"currency change"|translate}}</p>       
+        </ion-button>  
+         </ion-col>
+      <ion-col size="1"> </ion-col>
+    </ion-row>
+      
+</ion-content>
+ 

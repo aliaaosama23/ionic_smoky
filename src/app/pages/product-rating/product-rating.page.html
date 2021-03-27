@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="font-size: 18px;text-transform: capitalize;">  
+      <ion-row>
+        <ion-col size="1"></ion-col>
+        <ion-col size="4">
+          {{ "add rate to product"|translate}}
+        </ion-col>
+        <ion-col size="7"></ion-col>
+      </ion-row>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cart()">
+        <ion-icon name="cart" style="font-size: 20px;"></ion-icon>
+        <ion-badge color="light" *ngIf="cartNumber>0">{{cartNumber}}</ion-badge>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <h5 style="color: black;">{{"You are now reviewing the product"|translate}} </h5>
+  <h5 style="color: black;"> {{productname}} </h5>
+
+  <form [formGroup]="myForm" (ngSubmit)="productRate()">  
+    <ion-item>
+      <ion-input formControlName="name" [placeholder]="name" type="text"></ion-input>
+    </ion-item>
+    <ion-item style="    background-color: #efe9e9c7;">
+      <ion-textarea   formControlName="text" [placeholder]="text" type="text"></ion-textarea>
+    </ion-item>
+    <rating formControlName="rating" readonly="false" size="5"  (ngModelChange)="logRatingChange($event)"></rating> 
+    
+    <ion-button color="primary" style="margin-top: 30px;height: 46px;" expand="block" shape="round" type="submit" >  
+          <p style="font-size: 20px;"> {{"send"|translate}}</p>       
+    </ion-button>     
+</form> 
+</ion-content>

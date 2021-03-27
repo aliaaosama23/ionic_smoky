@@ -1,0 +1,184 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="font-size: 18px;text-align: center;">{{"person"|translate}}</ion-title>
+    <!-- <ion-buttons slot="start" style="margin: 0 14px;" (click)="Editprofile()" *ngIf='!isEditing && loginedIn'>
+      <p style="color: #E80175;">{{"edit"|translate}}</p>
+    </ion-buttons> -->
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!loginedIn">
+  <ion-button color="primary" style="margin-top: 30px;    height: 46px;margin: 20px 46px;" expand="block" shape="round"
+    routerLink="/login">
+    <p style="font-size: 13px;">{{"login/regist"|translate}} </p>
+  </ion-button>
+
+  <ion-list>
+    <ion-item lines="none" button (click)="ModifyWhishlist()"
+      style="border-top: 1px solid #8F8F8F;border-bottom:1px solid #8F8F8F ;">
+
+      <ion-label style="color:black">
+        {{"favourite edit"|translate}}
+      </ion-label>
+      <ion-icon name="pricetags" slot="start" style="color: black;"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-content *ngIf="loginedIn" class="ion-padding-horizontal" class="ion-no-padding">
+
+  <ion-list style="padding-top: 0px !important ;">
+    <ion-item-divider color="primary" lines="none" style="height: 20px;">
+      <ion-label>
+        {{"person"|translate}}
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="none" button (click)="Editprofile()" style="height: 39px;border-bottom: 1px solid #8F8F8F;">
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"Edit My Account Info"|translate}}</ion-label>
+      <ion-icon style="color:black" name="pencil" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" button (click)="ChangePassword()" style="height: 39px;border-bottom: 1px solid #8F8F8F;"> 
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"Change Password"|translate}}</ion-label>
+      <ion-icon style="color:black;" name="lock-closed" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" button (click)="ModifyAddresses()" style="height: 39px;border-bottom: 1px solid #8F8F8F;">
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"Modify your address book entries"|translate}}</ion-label>
+      <ion-icon style="color:black" name="locate" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" button (click)="ModifyWhishlist()" style="height: 39px;">
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"favourite edit"|translate}}</ion-label>
+      <ion-icon style="color:black" name="pricetags" slot="start"></ion-icon>
+    </ion-item>
+
+
+    <ion-item-divider color="primary" lines="none" style="height: 20px;">
+      <ion-label>
+        {{"My Orders"|translate}}
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="none" button (click)="MyOrders()" style="height: 39px;border-bottom: 1px solid #8F8F8F;">
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"My Orders"|translate}}</ion-label>
+      <ion-icon style="color:black" name="filter" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" button (click)="YourTransations()" style="height: 39px;border-bottom: 1px solid #8F8F8F;"> 
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"Your Transations"|translate}}</ion-label>
+      <ion-icon style="color:black;" name="cash" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-item lines="none" button (click)="MyReturns()" style="height: 39px;border-bottom: 1px solid #8F8F8F;">
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"View your return requests"|translate}}</ion-label>
+      <ion-icon style="color:black" name="return-up-forward" slot="start"></ion-icon>
+    </ion-item> 
+
+
+    <ion-item-divider color="primary" lines="none" style="height: 20px;">
+      <ion-label>
+        {{"NEWSLETTER"|translate}}
+      </ion-label>
+    </ion-item-divider>
+
+    <ion-item lines="none" button (click)="subscribeNewsletter()" style="height: 39px">
+      <ion-label style="color:black;font-size: 14px;overflow: visible;">{{"Subscribe"|translate}}</ion-label>
+      <ion-icon style="color:black" name="mail" slot="start"></ion-icon>
+    </ion-item>
+
+    <ion-button color="primary" style="margin: 30px 20%;height: 40px;" expand="block" shape="round" (click)="logout()" >  
+      <p style="font-size: 20px;"> {{"logout"|translate}}</p>       
+    </ion-button>    
+  </ion-list>
+
+  <!-- <form   *ngIf='!isEditing'>  
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>    
+          <ion-label style="color: black;" position="stacked">
+            <ion-icon name="person" style="font-size: 22px;color:#8B177A;margin-left: 5% "></ion-icon> 
+            <p style="display: inline; font-size: 19px;color: #707070;">{{"fName"|translate}}</p> 
+          </ion-label>
+          <ion-input   type="text" [value]="f_name" [readonly]="true"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>    
+          <ion-label style="color: black;" position="stacked">
+            <ion-icon name="person" style="font-size: 22px;color:#8B177A;margin-left: 5% "></ion-icon> 
+            <p style="display: inline; font-size: 19px;color: #707070;">{{"lName"|translate}}</p> 
+          </ion-label>
+          <ion-input   type="text" [value]="l_name" [readonly]="true"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="mail" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;">{{"email"|translate}}</p> 
+      </ion-label>
+      <ion-input  type="email" [value]="_email" [readonly]="true"></ion-input>
+    </ion-item>
+  
+    <ion-item>    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="call" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;">{{"mobile"|translate}}</p> 
+      </ion-label>
+      <ion-input  type="number" [value]="_telephone" [readonly]="true"></ion-input>
+    </ion-item>
+  
+        
+</form> 
+
+<form *ngIf="isEditing"  [formGroup]="myForm" (ngSubmit)="updateProfile()">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item>    
+          <ion-label style="color: black;" position="stacked">
+            <ion-icon name="person" style="font-size: 22px;color:#8B177A;margin-left: 5% "></ion-icon> 
+            <p style="display: inline; font-size: 19px;color: #707070;">{{"fName"|translate}}</p> 
+          </ion-label>
+          <ion-input  formControlName="firstname" [(ngModel)]="f_name"  type="text" ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>    
+          <ion-label style="color: black;" position="stacked">
+            <ion-icon name="person" style="font-size: 22px;color:#8B177A;margin-left: 5% "></ion-icon> 
+            <p style="display: inline; font-size: 19px;color: #707070;">{{"lName"|translate}}</p> 
+          </ion-label>
+          <ion-input  formControlName="lastname" [(ngModel)]="l_name" type="text" ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-item>    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="mail" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;">{{"email"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="email" type="email" [(ngModel)]="_email" ></ion-input>
+    </ion-item>
+  
+    <ion-item>    
+      <ion-label style="color: black;" position="stacked">
+        <ion-icon name="call" style="font-size: 22px;color:#8B177A;margin-left: 5%"></ion-icon> 
+        <p style="display: inline; font-size: 19px;color: #707070;">{{"mobile"|translate}}</p> 
+      </ion-label>
+      <ion-input  formControlName="telephone" type="number" [(ngModel)]="_telephone"></ion-input>
+    </ion-item>
+  
+  <ion-button color="primary" style="margin-top: 30px;    height: 46px;" expand="block" shape="round" type="submit" >  
+    <p style="font-size: 20px;">{{ "save"|translate}}</p>       
+  </ion-button> 
+</form> -->
+</ion-content>

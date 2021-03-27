@@ -1,0 +1,29 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom" style="border-top-color: #d4cece !important;">
+    <ion-tab-button tab="main">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{"home"|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="cart">
+      <ion-icon name="cart"></ion-icon>
+      <ion-label>{{"cart"|translate}}</ion-label>
+      <ion-badge color="light" *ngIf="cartNumber>0">{{cartNumber}}</ion-badge>
+    </ion-tab-button>
+
+    <ion-tab-button tab="favourite">
+      <ion-icon name="pricetags"></ion-icon>
+      <ion-label>{{"favourite"|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      <ion-label>{{"search"|translate}}</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="userprofile">
+      <ion-icon name="person"></ion-icon>
+      <ion-label>{{"person"|translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

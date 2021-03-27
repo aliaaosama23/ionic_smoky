@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="font-size: 18px;text-transform: capitalize;text-align: center;">  
+          {{"Return requests List"|translate}}   
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cart()">
+        <ion-icon name="cart" style="font-size: 20px;"></ion-icon>
+        <ion-badge color="light" *ngIf="cartNumber>0">{{cartNumber}}</ion-badge>
+      </ion-button>
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+</ion-content>

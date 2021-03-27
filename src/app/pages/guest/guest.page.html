@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar >
+    <ion-title style="font-size: 18px;text-align: center;">{{"payment details"|translate}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-forward" style="font-size: 20px;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  class="ion-padding">
+
+  <form [formGroup]="myForm" (ngSubmit)="register()">  
+   
+    <h4 style="color: black;"> {{"personal info"|translate}} </h4>
+
+    <ion-item>
+      <ion-input formControlName="firstname" [placeholder]="fName" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="lastname" [placeholder]="lName" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="email" [placeholder]="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input formControlName="telephone" [placeholder]="mobile" type="number"></ion-input>
+    </ion-item>
+
+    <h4 style="color: black;"> {{"Your Addresses"|translate}} </h4>
+
+    <ion-item>
+      <ion-label style="color: grey;">{{"_country"|translate}}</ion-label>
+      <ion-select [(ngModel)]="countryId" (ionChange)="selectCountry()" [placeholder]="country" formControlName="country_id" style="color: black;" cancelText="{{'cancel'|translate}}" okText="{{'okay'|translate}}">
+        <ion-select-option [value]="country.country_id" *ngFor="let country of countries">
+         {{country.name}}
+        </ion-select-option>  
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label style="color: grey;"> {{"region"|translate}}</ion-label>
+      <ion-select [placeholder]="region" formControlName="zone_id" style="color: black;" cancelText="{{'cancel'|translate}}" okText="{{'okay'|translate}}">
+        <ion-select-option [value]="city.zone_id" *ngFor="let city of cities">
+         {{city.name}}
+        </ion-select-option> 
+      </ion-select>
+    </ion-item>
+
+    
+    <ion-item>
+      <ion-input formControlName="city" [placeholder]="city" type="text"></ion-input>
+    </ion-item>
+
+ 
+    <ion-button color="primary" style="margin-top: 30px;height: 46px;" expand="block" shape="round" type="submit" >  
+          <p style="font-size: 20px;"> {{"register"|translate}}</p>       
+    </ion-button>       
+  </form> 
+
+</ion-content>

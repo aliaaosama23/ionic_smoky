@@ -1,0 +1,185 @@
+<ion-app>
+  <!-- <ion-split-pane contentId="main" menuId="custom" > -->
+    <!--  our side menu [side]="(plt.isRTL)? 'start' : 'end'" -->
+    <ion-menu   contentId="main" menuId="custom"  side="start"  class="my-custom-menu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button autoHide="false"></ion-menu-button> 
+          </ion-buttons>  
+        </ion-toolbar>
+      </ion-header>
+      <ion-content >
+        <h1 style="text-align: center;font-size: 15px;"(click)="signup_login()"  *ngIf="!user_logined_in">  {{"login/regist"|translate}} </h1>
+        <ion-list id="inbox-list">  
+          <ion-menu-toggle  menu="custom" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="getCategories()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"categories"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle  menu="custom" auto-hide="false" > 
+            <ion-item  routerLinkActive="active-item" (click)="getCompareProducts()" button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"compare"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="getOffers()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"best offers"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="contact()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"contact us"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="currencies()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"currencies"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="languages()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"languages"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom" auto-hide="false"  *ngIf="!about">
+            <ion-item  routerLinkActive="active-item" (click)="aboutUs()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"aboutus"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <div style="padding: 6px;" *ngIf="about">
+            <ion-menu-toggle    menu="custom" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(4)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"about"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle    menu="custom" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(3)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"privacy"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle    menu="custom" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(11)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"Brands"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle    menu="custom" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(5)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"Terms and conditions"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+                 
+          </div>
+        
+        </ion-list>
+    
+        <h1 style="text-align: center;font-size: 15px;margin-top: 20%;"(click)="logout()" *ngIf="user_logined_in">  {{"logout"|translate}} </h1>
+
+      </ion-content>
+    </ion-menu>
+   
+  
+    <ion-menu   contentId="main" menuId="custom1"  side="end"  class="my-custom-menu">
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button autoHide="false"></ion-menu-button> 
+          </ion-buttons>  
+        </ion-toolbar>
+      </ion-header>
+      <!-- style="background-color: #191818fa;" -->
+      <ion-content >
+
+        <h1 style="text-align: center;font-size: 15px;"(click)="signup_login()"  *ngIf="!user_logined_in">  {{"login/regist"|translate}} </h1>
+        
+        
+        <ion-list id="inbox-list">
+            
+          
+          <ion-menu-toggle  menu="custom1" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="getCategories()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"categories"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle  menu="custom1" auto-hide="false" > 
+            <ion-item  routerLinkActive="active-item" (click)="getCompareProducts()" button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"compare"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom1" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="getOffers()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"best offers"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom1" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="contact()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"contact us"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom1" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="currencies()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"currencies"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom1" auto-hide="false" >
+            <ion-item  routerLinkActive="active-item" (click)="languages()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"languages"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <ion-menu-toggle  menu="custom1" auto-hide="false"  *ngIf="!about">
+            <ion-item  routerLinkActive="active-item" (click)="aboutUs()"  button lines="none" detail >
+              <ion-label style="margin-right: 8%;">  {{"aboutus"|translate}}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+
+          <div style="padding: 6px;" *ngIf="about">
+            <ion-menu-toggle    menu="custom1" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(4)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"about"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle    menu="custom1" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(3)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"privacy"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle    menu="custom1" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(11)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"Brands"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+
+            <ion-menu-toggle    menu="custom1" auto-hide="false" >
+              <ion-item  routerLinkActive="active-item" (click)="AboutUs(5)"  lines="none" detail="false" >
+                <ion-label style="margin-right: 8%;">{{"Terms and conditions"|translate}}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+                 
+          </div>
+        
+        </ion-list>
+    
+        <h1 style="text-align: center;font-size: 15px;margin-top: 20%;"(click)="logout()" *ngIf="user_logined_in">  {{"logout"|translate}} </h1>
+
+      </ion-content>
+    </ion-menu>
+
+    
+    <!-- the main content  [dir]="(plt.isRTL)? 'rtl' : 'ltr'"-->
+    <ion-router-outlet id="main"></ion-router-outlet>
+  <!-- </ion-split-pane> -->
+</ion-app>
