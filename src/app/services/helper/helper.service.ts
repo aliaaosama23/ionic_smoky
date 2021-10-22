@@ -31,8 +31,7 @@ export class HelperService {
               private spinnerDialog: SpinnerDialog,private translate:TranslateService,
               private storage:Storage) { 
 
-                this.BaseUrl='https://smo-ky.com/api/rest/';
-                this.SecretKey='3RFIr8HN0y6GFIhR1Lee4dVYfCIUfSSI';
+                
   }
 
   setCartItems(val){
